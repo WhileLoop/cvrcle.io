@@ -1,0 +1,29 @@
+version: "2.1"
+services:
+  cvrcle:
+    image: node:7.7.4
+    command: make -C /app
+    volumes:
+      - ./:/app
+    environment:
+      AUTH0_CLIENT_ID: fake
+      AUTH0_CLIENT_SECRET: fake
+      AUTH0_DOMAIN: fake
+      MYSQL_APP_USER: username
+      MYSQL_APP_PASS: password
+      MYSQL_MASTER_USER: username
+      MYSQL_MASTER_PASS: password
+      MYSQL_DEV_DB: cvrcle
+      MYSQL_PROD_DB: cvrcle
+      MYSQL_URI: mysql
+      NODE_ENV: development
+      GOOGLE_API_KEY: fake
+  mysql:
+    image: mysql:8.0.0
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cvrcle
+      MYSQL_USER: username
+      MYSQL_PASSWORD: password
